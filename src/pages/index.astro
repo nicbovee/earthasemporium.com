@@ -1,11 +1,192 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import ProductCard from '../components/ProductCard.astro';
+import MarketCard from '../components/MarketCard.astro';
+import Gallery from '../components/Gallery.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
+import Footer from '../components/Footer.astro';
+import { getInstagramPosts } from '../lib/instagram';
+import { Image } from 'astro:assets';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import aboutImage from '../assets/images/IMG_6788.JPG';
+import plantsImage from '../assets/images/IMG_6787.JPG';
+import trinketsImage from '../assets/images/IMG_6740 2.JPG';
+import gallery3318 from '../assets/images/IMG_3318.jpg';
+import gallery3378 from '../assets/images/IMG_3378.jpg';
+import gallery3383 from '../assets/images/IMG_3383.jpg';
+import gallery4233 from '../assets/images/IMG_4233.jpg';
+import gallery4234 from '../assets/images/IMG_4234.jpg';
+import heroImage from '../assets/images/B8220708-9DC6-4333-BA1B-7E1B5688C398.JPG';
+
+const galleryImages = [
+	{ src: heroImage, alt: 'Houseplants on display at a farmers market booth' },
+	{ src: gallery3318, alt: 'Lush indoor plant collection with trailing vines' },
+	{ src: gallery3378, alt: 'Succulents and small plants in colorful pots' },
+	{ src: gallery3383, alt: 'Handmade ceramic planters in earthy tones' },
+	{ src: gallery4233, alt: 'Market display of potted plants and greenery' },
+	{ src: gallery4234, alt: 'Close-up of healthy houseplant foliage' },
+];
+
+const instagramPosts = await getInstagramPosts(6);
+const instagramProfileUrl = 'https://www.instagram.com/earthas_emporium/';
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+	<main>
+		<Hero />
+
+		<Section
+			id="about"
+			title="Rooted in the Pikes Peak Region"
+			subtitle="Eartha's Emporium brings together a love of plants, handmade goods, and community — one market morning at a time."
+		>
+			<div class="grid items-center gap-12 lg:grid-cols-2">
+				<div class="space-y-5 text-forest/80">
+					<p>
+						What started as a passion for growing and sharing houseplants has grown into a
+						small business built on care, creativity, and connection. Every plant is nurtured
+						with attention, and every pot and trinket is chosen to bring a little more green
+						and warmth into your home.
+					</p>
+					<p>
+						We set up shop at two beloved local farmers markets each week, where you can browse
+						our latest plants, pick out a handmade pot, and chat about what might thrive in
+						your space. Whether you're a seasoned plant parent or just starting out, we're
+						happy to help you find something special.
+					</p>
+				</div>
+				<div class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-forest/5">
+					<Image
+						src={aboutImage}
+						alt="Cozy indoor space filled with houseplants, macramé hangers, and warm lighting"
+						class="h-full w-full object-cover"
+						loading="lazy"
+						widths={[600, 800, 1000]}
+						sizes="(max-width: 1024px) 100vw, 50vw"
+					/>
+				</div>
+			</div>
+		</Section>
+
+		<Section
+			id="plants"
+			title="Plants We Grow & Sell"
+			subtitle="Healthy, happy houseplants ready for your home — from easy-care favorites to statement pieces."
+			class="bg-white/50"
+		>
+			<div class="grid items-start gap-12 lg:grid-cols-2">
+				<div class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-forest/5 lg:order-2">
+					<Image
+						src={plantsImage}
+						alt="Tiered shelf display of monstera, pothos, succulents, and trailing plants"
+						class="h-full w-full object-cover"
+						loading="lazy"
+						widths={[600, 800, 1000]}
+						sizes="(max-width: 1024px) 100vw, 50vw"
+					/>
+				</div>
+				<div class="lg:order-1">
+					<ProductCard
+						title="Houseplants"
+						description="We grow and source a rotating selection of popular and hard-to-find varieties. Inventory changes with the seasons, so there's always something new to discover at market."
+						items={[
+							'Monstera & pothos',
+							'Prayer plants & calatheas',
+							'Pilea & begonias',
+							'Succulents & aloe',
+							'Trailing vines & ferns',
+							'Seasonal specialty plants',
+						]}
+					/>
+				</div>
+			</div>
+		</Section>
+
+		<Section
+			id="trinkets"
+			title="Trinkets & Treasures"
+			subtitle="Handmade pots, cozy home goods, and little finds that pair perfectly with your plants."
+		>
+			<div class="grid items-start gap-12 lg:grid-cols-2">
+				<div class="overflow-hidden rounded-2xl shadow-lg ring-1 ring-forest/5">
+					<Image
+						src={trinketsImage}
+						alt="Collection of colorful handmade ceramic pots in forest green, mustard, teal, and blush"
+						class="h-full w-full object-cover"
+						loading="lazy"
+						widths={[600, 800, 1000]}
+						sizes="(max-width: 1024px) 100vw, 50vw"
+					/>
+				</div>
+				<div>
+					<ProductCard
+						title="Handmade & Home"
+						description="Beyond plants, we curate pots, hangers, and small goods that make your space feel like home. Many pieces are one-of-a-kind or made in small batches."
+						items={[
+							'Handmade ceramic pots',
+							'Macramé & beaded plant hangers',
+							'Terracotta & decorative planters',
+							'Himalayan salt lamps',
+							'Small home décor & gifts',
+							'Plant care accessories',
+						]}
+					/>
+				</div>
+			</div>
+		</Section>
+
+		<Section
+			id="markets"
+			title="Find Us at Market"
+			subtitle="We vend at two farmers markets in the Pikes Peak region. Come say hello, browse the booth, and take home something green."
+			class="bg-blush/20"
+		>
+			<div class="grid gap-8 md:grid-cols-2">
+				<MarketCard
+					day="Every Friday"
+					name="Woodland Park Farmers Market"
+					hours="8:00 AM – 1:00 PM"
+					season="June through September"
+					address="Memorial Park, Center Street & Henrietta Avenue, Woodland Park, CO 80863"
+					notes="A scenic 30-minute drive from Colorado Springs with live music, 70+ vendors, and cool mountain mornings. The perfect Friday outing."
+					websiteUrl="https://wpfarmersmarket.com"
+					mapsUrl="https://maps.google.com/?q=Memorial+Park+Woodland+Park+CO"
+					accent="teal"
+				/>
+				<MarketCard
+					day="Every Saturday"
+					name="Old Colorado City Farmers Market"
+					hours="7:00 AM – 1:00 PM"
+					season="June through October"
+					address="Bancroft Park, 2408 W. Colorado Ave., Colorado Springs, CO 80904"
+					notes="Rain or shine in the heart of historic Old Colorado City. Over 40 years of community tradition with 80+ vendors — pair your visit with brunch and a stroll through the district."
+					websiteUrl="https://www.pikespeakfarmersmarkets.com"
+					mapsUrl="https://maps.google.com/?q=Bancroft+Park+2408+W+Colorado+Ave+Colorado+Springs+CO"
+					accent="terracotta"
+				/>
+			</div>
+		</Section>
+
+		<Section
+			id="gallery"
+			title="From Our Booth & Beyond"
+			subtitle="A peek at the plants, pots, and cozy corners that inspire Eartha's Emporium."
+		>
+			<Gallery images={galleryImages} />
+		</Section>
+
+		<Section
+			id="instagram"
+			title="Latest on Instagram"
+			subtitle="Fresh from the booth and the greenhouse — follow along for new plants, market days, and behind-the-scenes moments."
+			class="bg-white/50"
+		>
+			<InstagramFeed posts={instagramPosts} profileUrl={instagramProfileUrl} />
+		</Section>
+	</main>
+	<Footer />
 </Layout>

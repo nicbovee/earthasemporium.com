@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import horizontalLogo from '../assets/images/9Horizontal Logo@2x.png';
+import mainLogo from '../assets/images/5Main Logo@2x.png';
+
+interface Props {
+	variant?: 'horizontal' | 'main';
+	class?: string;
+}
+
+const { variant = 'horizontal', class: className = '' } = Astro.props;
+const src = variant === 'main' ? mainLogo : horizontalLogo;
+---
+
+{
+	variant === 'main' ? (
+		<Image
+			src={src}
+			alt="Eartha's Emporium"
+			class={`h-auto w-56 md:w-72 lg:w-80 ${className}`}
+			width={320}
+			height={320}
+			loading="eager"
+			decoding="async"
+		/>
+	) : (
+		<Image
+			src={src}
+			alt="Eartha's Emporium"
+			class={`h-10 w-auto md:h-12 ${className}`}
+			width={240}
+			height={60}
+			loading="eager"
+			decoding="async"
+		/>
+	)
+}

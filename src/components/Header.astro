@@ -1,0 +1,66 @@
+---
+import Logo from './Logo.astro';
+
+const navLinks = [
+	{ href: '#about', label: 'About' },
+	{ href: '#plants', label: 'Plants' },
+	{ href: '#trinkets', label: 'Trinkets' },
+	{ href: '#markets', label: 'Markets' },
+	{ href: '#gallery', label: 'Gallery' },
+	{ href: '#instagram', label: 'Instagram' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-forest/10 bg-cream/95 backdrop-blur-sm">
+	<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+		<a href="#" class="block shrink-0">
+			<Logo variant="horizontal" />
+		</a>
+
+		<nav class="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+			{
+				navLinks.map((link) => (
+					<a
+						href={link.href}
+						class="text-sm font-medium text-forest/80 transition-colors hover:text-teal"
+					>
+						{link.label}
+					</a>
+				))
+			}
+			<a
+				href="#markets"
+				class="rounded-full bg-teal px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-forest"
+			>
+				Find Us
+			</a>
+		</nav>
+
+		<details class="relative md:hidden">
+			<summary class="cursor-pointer list-none rounded-lg p-2 text-forest [&::-webkit-details-marker]:hidden">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+				<span class="sr-only">Open menu</span>
+			</summary>
+			<nav class="absolute right-0 mt-2 w-48 rounded-xl border border-forest/10 bg-cream py-2 shadow-lg" aria-label="Mobile navigation">
+				{
+					navLinks.map((link) => (
+						<a
+							href={link.href}
+							class="block px-4 py-2 text-sm font-medium text-forest/80 hover:bg-blush/30 hover:text-teal"
+						>
+							{link.label}
+						</a>
+					))
+				}
+				<a
+					href="#markets"
+					class="mx-3 mt-2 block rounded-full bg-teal px-4 py-2 text-center text-sm font-semibold text-white"
+				>
+					Find Us
+				</a>
+			</nav>
+		</details>
+	</div>
+</header>

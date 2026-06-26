@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import Logo from './Logo.astro';
+import heroImage from '../assets/images/B8220708-9DC6-4333-BA1B-7E1B5688C398.JPG';
+---
+
+<section class="relative min-h-[85vh] overflow-hidden">
+	<Image
+		src={heroImage}
+		alt="Colorful houseplants displayed at an outdoor farmers market"
+		class="absolute inset-0 h-full w-full object-cover"
+		loading="eager"
+		fetchpriority="high"
+	/>
+	<div class="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/40 to-forest/20"></div>
+
+	<div class="relative mx-auto flex min-h-[85vh] max-w-6xl flex-col justify-end px-6 pb-16 pt-32">
+		<p class="mb-3 text-sm font-semibold uppercase tracking-widest text-mustard">Pikes Peak Region</p>
+		<h1 class="sr-only">Eartha's Emporium</h1>
+		<Logo variant="main" class="drop-shadow-lg" />
+		<p class="mt-4 max-w-xl text-lg text-white/90 md:text-xl">
+			Curated houseplants, handmade pots, and cozy trinkets — grown with love and sold at your local farmers markets.
+		</p>
+		<div class="mt-8 flex flex-wrap gap-4">
+			<a
+				href="#markets"
+				class="rounded-full bg-teal px-8 py-3 font-semibold text-white transition-colors hover:bg-mustard hover:text-forest"
+			>
+				Find Us at Market
+			</a>
+			<a
+				href="#plants"
+				class="rounded-full border-2 border-white/60 px-8 py-3 font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
+			>
+				See What We Sell
+			</a>
+		</div>
+	</div>
+</section>

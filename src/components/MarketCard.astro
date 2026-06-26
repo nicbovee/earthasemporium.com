@@ -1,0 +1,63 @@
+---
+interface Props {
+	day: string;
+	name: string;
+	hours: string;
+	season: string;
+	address: string;
+	notes: string;
+	websiteUrl: string;
+	mapsUrl: string;
+	accent: 'teal' | 'terracotta';
+}
+
+const { day, name, hours, season, address, notes, websiteUrl, mapsUrl, accent } = Astro.props;
+
+const badgeClass =
+	accent === 'teal'
+		? 'bg-teal/10 text-teal'
+		: 'bg-terracotta/10 text-terracotta';
+---
+
+<article class="flex flex-col rounded-2xl bg-white p-8 shadow-sm ring-1 ring-forest/5">
+	<span class={`inline-flex w-fit rounded-full px-4 py-1 text-sm font-semibold ${badgeClass}`}>
+		{day}
+	</span>
+	<h3 class="mt-4 font-heading text-2xl font-semibold text-forest">{name}</h3>
+
+	<dl class="mt-6 space-y-4 text-forest/80">
+		<div>
+			<dt class="text-xs font-semibold uppercase tracking-wider text-forest/50">Hours</dt>
+			<dd class="mt-1 font-medium">{hours}</dd>
+		</div>
+		<div>
+			<dt class="text-xs font-semibold uppercase tracking-wider text-forest/50">Season</dt>
+			<dd class="mt-1">{season}</dd>
+		</div>
+		<div>
+			<dt class="text-xs font-semibold uppercase tracking-wider text-forest/50">Location</dt>
+			<dd class="mt-1">{address}</dd>
+		</div>
+	</dl>
+
+	<p class="mt-6 flex-1 text-sm text-forest/60">{notes}</p>
+
+	<div class="mt-8 flex flex-wrap gap-3">
+		<a
+			href={mapsUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="rounded-full bg-forest px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal"
+		>
+			Get Directions
+		</a>
+		<a
+			href={websiteUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="rounded-full border border-forest/20 px-5 py-2 text-sm font-semibold text-forest transition-colors hover:border-teal hover:text-teal"
+		>
+			Market Website
+		</a>
+	</div>
+</article>

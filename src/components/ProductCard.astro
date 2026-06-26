@@ -1,0 +1,24 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	items: string[];
+}
+
+const { title, description, items } = Astro.props;
+---
+
+<div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-forest/5">
+	<h3 class="font-heading text-2xl font-semibold text-forest">{title}</h3>
+	<p class="mt-3 text-forest/70">{description}</p>
+	<ul class="mt-6 grid gap-2 sm:grid-cols-2">
+		{
+			items.map((item) => (
+				<li class="flex items-center gap-2 text-forest/80">
+					<span class="h-1.5 w-1.5 shrink-0 rounded-full bg-sage" aria-hidden="true"></span>
+					{item}
+				</li>
+			))
+		}
+	</ul>
+</div>
