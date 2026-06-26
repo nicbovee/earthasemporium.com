@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import horizontalLogo from '../assets/images/9Horizontal Logo@2x.png';
-import mainLogo from '../assets/images/5Main Logo@2x.png';
+import horizontalLogo from '../assets/images/logo@2x.png';
+import mainLogo from '../assets/images/logo@2x.png';
 
 interface Props {
 	variant?: 'horizontal' | 'main';
@@ -27,9 +27,9 @@ const src = variant === 'main' ? mainLogo : horizontalLogo;
 		<Image
 			src={src}
 			alt="Eartha's Emporium"
-			class={`h-14 w-auto md:h-16 ${className}`}
-			width={1024}
-			height={1024}
+			class={className || ' h-12 w-auto md:h-18'}
+			width={363}
+			height={159}
 			loading="eager"
 			decoding="async"
 		/>
